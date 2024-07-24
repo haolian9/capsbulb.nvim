@@ -1,6 +1,6 @@
-it shows an indicator when `caps lock` is on
+a toy project that shows an indicator when `caps lock` is on
 
-![161159ee-497e-11ef-a85f-54b203702c9c](https://github.com/user-attachments/assets/244111ad-b7b4-4ffb-8284-eb5e8c26e5cd)
+![557a3692-49b9-11ef-aac0-54b203702c9c](https://github.com/user-attachments/assets/601e92c0-480c-447e-8de3-0a6cb9fdbbcb)
 
 
 ## status
