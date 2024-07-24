@@ -24,6 +24,8 @@ do
     end
     facts.floatwin_ns = ns
   end
+
+  facts.text_on = "🅰️"
 end
 
 do
@@ -45,7 +47,7 @@ do
         bufnr,
         false,
         { relative = "editor", focusable = false, hide = true },
-        { width = #"Caps OFF", height = 1, horizontal = "mid", vertical = "mid", ns = facts.floatwin_ns }
+        { width = ni.strwidth(facts.text_on), height = 1, horizontal = "mid", vertical = "mid", ns = facts.floatwin_ns }
       )
       prefer.wo(winid, "winfixbuf", true)
     end
@@ -59,7 +61,8 @@ do
         if not unsafe.is_capslock_on() then
           ni.win_set_config(winid, { hide = true })
         else
-          buflines.replaces_all(bufnr, { "Caps ON" })
+          buflines.replaces_all(bufnr, { facts.text_on })
+
           ni.win_set_config(winid, { hide = false })
         end
       end
