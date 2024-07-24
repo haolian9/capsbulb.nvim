@@ -25,7 +25,8 @@ do
     facts.floatwin_ns = ns
   end
 
-  facts.text_on = "🅰️"
+  --no using multibyte characters due to https://github.com/neovim/neovim/issues/29844
+  facts.text_on = "CAPSLOCK"
 end
 
 do
@@ -46,7 +47,7 @@ do
       winid = rifts.open.fragment( --
         bufnr,
         false,
-        { relative = "editor", focusable = false, hide = true },
+        { relative = "editor", focusable = false, hide = true, border = "single" },
         { width = ni.strwidth(facts.text_on), height = 1, horizontal = "mid", vertical = "mid", ns = facts.floatwin_ns }
       )
       prefer.wo(winid, "winfixbuf", true)
