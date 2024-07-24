@@ -1,5 +1,8 @@
 it shows an indicator when `caps lock` is on
 
+![161159ee-497e-11ef-a85f-54b203702c9c](https://github.com/user-attachments/assets/244111ad-b7b4-4ffb-8284-eb5e8c26e5cd)
+
+
 ## status
 * it just works
 * the use of ffi may crash nvim
