@@ -38,7 +38,7 @@ do
   end
 
   local function activate() --
-    if not ni.buf_is_valid(bufnr) then bufnr = Ephemeral({ bufhidden = "hide", namepat = "capsbulb://{bufnr}" }) end
+    if not ni.buf_is_valid(bufnr) then bufnr = Ephemeral({ namepat = "capsbulb://{bufnr}" }) end
 
     if not ni.win_is_valid(winid) then
       winid = rifts.open.fragment( --
@@ -54,16 +54,15 @@ do
       if not ni.win_is_valid(winid) then
         ni.win_set_config(winid, { hide = true })
         timer:stop()
-        return
+      else
+        assert(ni.buf_is_valid(bufnr))
+        if not unsafe.is_capslock_on() then
+          ni.win_set_config(winid, { hide = true })
+        else
+          buflines.replaces_all(bufnr, { "Caps ON" })
+          ni.win_set_config(winid, { hide = false })
+        end
       end
-
-      assert(ni.buf_is_valid(bufnr))
-      local on = unsafe.is_capslock_on()
-      if not on then return ni.win_set_config(winid, { hide = true }) end
-
-      local text = string.format("Caps %s", on and "ON" or "OFF")
-      buflines.replaces_all(bufnr, { text })
-      ni.win_set_config(winid, { hide = false })
     end
 
     timer:stop()
