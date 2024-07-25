@@ -7,6 +7,7 @@ local iuv = require("infra.iuv")
 local ni = require("infra.ni")
 local prefer = require("infra.prefer")
 local rifts = require("infra.rifts")
+local utf8 = require("infra.utf8")
 
 local unsafe = require("capsbulb.unsafe")
 
@@ -25,8 +26,16 @@ do
     facts.floatwin_ns = ns
   end
 
-  --no using multibyte characters due to https://github.com/neovim/neovim/issues/29844
-  facts.text_on = "CAPSLOCK"
+  do
+    facts.text_on = "CAPSLOCK"
+
+    do --a workaround for https://github.com/neovim/neovim/issues/29844
+      local last
+      --stylua: ignore
+      for char in utf8.iterate(facts.text_on) do last = char end
+      if #last > ni.strwidth(last) then facts.text_on = facts.text_on .. " " end
+    end
+  end
 end
 
 do
