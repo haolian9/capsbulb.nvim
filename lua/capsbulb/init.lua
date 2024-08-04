@@ -1,6 +1,5 @@
 local M = {}
 
-local buflines = require("infra.buflines")
 local Ephemeral = require("infra.Ephemeral")
 local highlighter = require("infra.highlighter")
 local iuv = require("infra.iuv")
